@@ -7,83 +7,36 @@ body {
     text-align: center;
   }
   
-  #input-container {
-    display: flex;
-    margin-bottom: 20px;
-  }
-  
-  #input-text {
-    flex: 1;
+  textarea {
+    width: 100%;
+    height: 200px;
     padding: 10px;
-    border: 1px solid #ccc;
     font-size: 16px;
-  }
-  
-  #split-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
+    border: 1px solid #ccc;
   }
   
   #flashcard-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  #flashcard-container {
-    display: flex; /* Keep display as flex */
-    flex-wrap: wrap; /* Allow wrapping to multiple lines */
-    justify-content: flex-end; /* Align cards to the right end of each line */
-  }
-  .flashcard {
-    width: 200px;
-    margin: 10px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .flashcard.flipped {
-    background-color: #ddd;
-    opacity: 0.1; /* New line */
-  }
-  
-  .flashcard .front,
-  .flashcard .back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    transition: transform 0.5s ease-in-out;
-  }
-  
-  .flashcard .front {
-    z-index: 2;
-  }
-  
-  .flashcard .back {
-    transform: rotateY(180deg);
-  }
-  
-  #controls {
-    text-align: center;
     margin-top: 20px;
   }
   
-  #controls button {
-    padding: 10px 20px;
+  .flashcard {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
     margin: 5px;
-    background-color: #007bff;
-    color: white;
-    border: none;
+    text-align: center;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+      /* ... existing styles */
+    backface-visibility: visible;
   }
+  
+  .flashcard.hidden {
+    transform: rotateY(180deg);
+    opacity: 0.05;
+  }
+  
+
   
