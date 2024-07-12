@@ -1,43 +1,45 @@
-const inputText = document.getElementById('input-text');
-const splitButton = document.getElementById('split-button');
-const flashcardContainer = document.getElementById('flashcard-container');
-const flipAllButton = document.getElementById('flip-all');
-const showAllButton = document.getElementById('show-All');
+const textInput = document.getElementById("text-input");
+const flashcardContainer = document.getElementById("flashcard-container");
+const hideAllButton = document.getElementById("hide-button");
+const showAllButton = document.getElementById("show-button");
+const directionSelect = document.getElementById("direction");
+const numCardsInput = document.getElementById('num-cards');
 
-const directionSelect = document.getElementById('direction-select');
+function createFlashcards() {
+  const text = textInput.value.trim().split(" ");
+  flashcardContainer.innerHTML = ""; // Clear existing flashcards
 
-directionSelect.addEventListener('change', function() {
-  const direction = this.value;
-  flashcardContainer.style.flexDirection = direction;
-});
-
-splitButton.addEventListener('click', function() {
-  const text = inputText.value.trim();
-  if (!text) return;
-
-  const words = text.split(/\s+/);
-  flashcardContainer.innerHTML = '';
-
-  words.forEach(word => {
-    const flashcard = document.createElement('div');
-    flashcard.classList.add('flashcard');
-    flashcard.innerHTML = `
-      <div class="front">${word}</div>
-      <div class="back"></div>
-    `;
-    flashcard.addEventListener('click', function() {
-      this.classList.toggle('flipped');
+  text.forEach((word) => {
+    const flashcard = document.createElement("div");
+    flashcard.classList.add("flashcard");
+    flashcard.textContent = word;
+    flashcard.addEventListener("click", () => {
+      flashcard.classList.toggle("hidden");
     });
     flashcardContainer.appendChild(flashcard);
   });
+
+  setDirection();
+}
+
+function setDirection() {
+  const direction = directionSelect.value;
+  flashcardContainer.style.flexDirection = direction === "left-to-right" ? "row" : "row-reverse";
+}
+
+textInput.addEventListener("input", createFlashcards);
+hideAllButton.addEventListener("click", () => {
+  const num = parseInt(numCardsInput.value);    
+  const flashcards = flashcardContainer.querySelectorAll(".flashcard");
+  flashcards.forEach((card, index) => { if (index%num==0) card.classList.add("hidden") });
 });
 
-flipAllButton.addEventListener('click', function() {
-  const flashcards = document.querySelectorAll('.flashcard');
-  flashcards.forEach(card => card.classList.toggle('flipped'));
+showAllButton.addEventListener("click", () => {
+    const num = parseInt(numCardsInput.value);    
+    const flashcards = flashcardContainer.querySelectorAll(".flashcard");
+    flashcards.forEach((card, index) => { if (index%num==0) card.classList.remove("hidden") });
 });
 
-showAllButton.addEventListener('click', function() {
-  const flashcards = document.querySelectorAll('.flashcard');
-  flashcards.forEach(card => card.classList.remove('flipped'));
-});
+directionSelect.addEventListener("change", setDirection);
+
+createFlashcards(); // Create flashcards on page load
