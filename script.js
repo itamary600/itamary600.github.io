@@ -10,6 +10,7 @@ function createFlashcards() {
   flashcardContainer.innerHTML = ""; // Clear existing flashcards
 
   text.forEach((word) => {
+    if (word.length<2) return;
     const flashcard = document.createElement("div");
     flashcard.classList.add("flashcard");
     flashcard.textContent = word;
