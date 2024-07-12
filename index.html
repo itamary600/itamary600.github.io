@@ -8,22 +8,21 @@
 </head>
 <body>
   <h1>Text Memorizer</h1>
-  <div id="input-container">
-    <textarea id="input-text" placeholder="Paste your text here..."></textarea>
-    <button id="split-button">Split to Flashcards</button>
-  </div>
+  <textarea id="text-input" placeholder="Paste your text here"></textarea>
   <div id="controls">
-    <button id="flip-all">Flip All</button>
-    <button id="show-all">Show All</button>
-    <div id="direction-toggle">
-      <label for="direction-select">Direction: </label>
-      <select id="direction-select">
-        <option value="ltr">Left to Right</option>
-        <option value="rtl">Right to Left</option>
-      </select>
-    </div>
+    <label for="num-cards">Number of Cards to Hide/Show:</label>
+    <input type="number" id="num-cards" min="1" max="20" value="5">
+    <button id="hide-button">Hide Words</button>
+    <button id="show-button">Show Words</button>
+    <br>
+    <label for="direction">Direction:</label>
+    <select id="direction">
+        <option value="right-to-left">Right to Left</option>
+        <option value="left-to-right">Left to Right</option>
+    </select>
   </div>
-  <div id="flashcard-container"></div>
-  <script src="script.js"></script>
+  <div id="flashcard-container">
+</div>
+<script src="script.js"></script>
 </body>
 </html>
