@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Memorizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Text Memorizer</h1>
+  <div id="input-container">
+    <textarea id="input-text" placeholder="Paste your text here..."></textarea>
+    <button id="split-button">Split to Flashcards</button>
+  </div>
+  <div id="controls">
+    <button id="flip-all">Flip All</button>
+    <button id="show-all">Show All</button>
+    <div id="direction-toggle">
+      <label for="direction-select">Direction: </label>
+      <select id="direction-select">
+        <option value="ltr">Left to Right</option>
+        <option value="rtl">Right to Left</option>
+      </select>
+    </div>
+  </div>
+  <div id="flashcard-container"></div>
+  <script src="script.js"></script>
+</body>
+</html>
