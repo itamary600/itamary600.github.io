@@ -4,9 +4,11 @@ const hideAllButton = document.getElementById("hide-button");
 const showAllButton = document.getElementById("show-button");
 const directionSelect = document.getElementById("direction");
 const numCardsInput = document.getElementById('num-cards');
+const regex = document.getElementById('regex');
 
 function createFlashcards() {
-  const text = textInput.value.trim().split(" ");
+  const text = regex.value.length == 0 ? textInput.value.trim().split(" "): 
+    textInput.value.replace(new RegExp(regex.value,"g"),"$1").trim().split(" ");
   flashcardContainer.innerHTML = ""; // Clear existing flashcards
 
   text.forEach((word) => {
@@ -29,16 +31,18 @@ function setDirection() {
 }
 
 textInput.addEventListener("input", createFlashcards);
+regex.addEventListener("input", createFlashcards);
+
 hideAllButton.addEventListener("click", () => {
   const num = parseInt(numCardsInput.value);    
   const flashcards = flashcardContainer.querySelectorAll(".flashcard");
-  flashcards.forEach((card, index) => { if (index%num==0) card.classList.add("hidden") });
+  flashcards.forEach((card, index) => { if (index%num==0) card.classList.add("hidden"); else card.classList.remove("hidden") }  );
 });
 
 showAllButton.addEventListener("click", () => {
     const num = parseInt(numCardsInput.value);    
     const flashcards = flashcardContainer.querySelectorAll(".flashcard");
-    flashcards.forEach((card, index) => { if (index%num==0) card.classList.remove("hidden") });
+    flashcards.forEach((card, index) => { if (index%num==0) card.classList.remove("hidden"); else card.classList.add("hidden") });
 });
 
 directionSelect.addEventListener("change", setDirection);
